@@ -18,7 +18,19 @@ public class ReadFile {
         }
     }
   public static char[][] stringToArray(String s){
-    
+    int r=1;
+    for(int i=0;i<s.length();i++){
+      if(s.charAt(i)='\n'){
+        r++;
+      }
+    }
+    int c=s.length()/r;
+    char[][] ans = new char[r][c];
+    for(int i=0;i<r;i++){
+      for(int j=0;j<c;j++){
+        char[i][j]=s.charAt(ic+j);
+      }
+    }
   }
   public static String arrayToString(char[][] ary){
     String ans="";
