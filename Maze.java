@@ -58,8 +58,11 @@ public class Maze{
 
             //and start solving at the location of the s.
             //return solve(???,???);
+            return 0;
     }
-
+    public String toString(){
+      return ReadFile.arrayToString(maze);
+    }
     /*
       Recursive Solve function:
 
