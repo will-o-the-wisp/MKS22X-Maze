@@ -11,16 +11,19 @@ public class ReadFile {
 
         //inf stands for the input file
         Scanner inf = new Scanner(text);
-
+        String full = "";
         while(inf.hasNextLine()){
             String line = inf.nextLine();
-            System.out.println(line);//hopefully you can do other things with the line
+            full+=line+'\n';
+            //System.out.println(line);//hopefully you can do other things with the line
         }
+        System.out.println(full);
+        System.out.println(arrayToString(stringToArray(full)));
     }
   public static char[][] stringToArray(String s){
-    int r=1;
+    int r=0;
     for(int i=0;i<s.length();i++){
-      if(s.charAt(i)='\n'){
+      if(s.charAt(i)=='\n'){
         r++;
       }
     }
@@ -28,17 +31,28 @@ public class ReadFile {
     char[][] ans = new char[r][c];
     for(int i=0;i<r;i++){
       for(int j=0;j<c;j++){
-        char[i][j]=s.charAt(ic+j);
+        ans[i][j]='_';
       }
     }
+    for(int i=0;i<r;i++){
+      for(int j=0;j<c;j++){
+        ans[i][j]=s.charAt(i*c+j);
+      }
+    }
+    return ans;
   }
   public static String arrayToString(char[][] ary){
     String ans="";
     for(int i=0;i<ary.length;i++){
       for(int j=0;j<ary[0].length;j++){
-        ans+=ary[i][j];
+        if(ary[i][j]!='\n'){
+          ans+=ary[i][j];
+        }
+        else{
+          ans+='n';
+          ans+=ary[i][j];
+        }
       }
-      ans+="\n";
     }
     return ans;
   }
