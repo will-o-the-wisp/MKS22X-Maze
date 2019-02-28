@@ -27,17 +27,20 @@ public class ReadFile {
         r++;
       }
     }
-    int c=s.length()/r;
+    int c=s.length()/r-1;
     char[][] ans = new char[r][c];
     for(int i=0;i<r;i++){
       for(int j=0;j<c;j++){
         ans[i][j]='_';
       }
     }
+    int ct=0;
     for(int i=0;i<r;i++){
       for(int j=0;j<c;j++){
-        ans[i][j]=s.charAt(i*c+j);
+        ans[i][j]=s.charAt(ct);
+        ct++;
       }
+      ct++;
     }
     return ans;
   }
@@ -53,6 +56,7 @@ public class ReadFile {
           ans+=ary[i][j];
         }
       }
+      ans+='\n';
     }
     return ans;
   }
