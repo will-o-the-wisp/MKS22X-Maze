@@ -52,13 +52,22 @@ public class Maze{
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
     */
     public int solve(){
+            int r=0;
+            int c=0;
             //find the location of the S.
-
+            for(int i=0;i<maze.length;i++){
+              for(int j=0;j<maze[0].length;j++){
+                if(maze[i][j]=='S'){
+                  r=i;
+                  c=j;
+                }
+              }
+            }
             //erase the S
 
             //and start solving at the location of the s.
             //return solve(???,???);
-            return 0;
+            return solve(r,c,0);
     }
     public String toString(){
       return ReadFile.arrayToString(maze);
@@ -82,35 +91,38 @@ public class Maze{
         }
         if(maze[r+1][c]!='.'&&maze[r+1][c]!='@'&&maze[r+1][c]!='#'){
           maze[r][c]='@';
-          if(solve(r+1,c,i+1)!=-1){
-            return i+1;
+          int s=solve(r+1,c,i+1);
+          if(s!=-1){
+            return s+1;
           }
         }
         if(maze[r][c+1]!='.'&&maze[r][c+1]!='@'&&maze[r][c+1]!='#'){
           maze[r][c]='@';
-          if(solve(r,c+1,i+1)!=-1){
-            return i+1;
+          int s=solve(r,c+1,i+1);
+          if(s!=-1){
+            return s+1;
           }
         }
         if(maze[r-1][c]!='.'&&maze[r-1][c]!='@'&&maze[r-1][c]!='#'){
           maze[r][c]='@';
-          if(solve(r-1,c,i+1)!=-1){
-            return i+1;
+          int s=solve(r-1,c,i+1);
+          if(s!=-1){
+            return s+1;
           }
         }
         if(maze[r][c-1]!='.'&&maze[r][c-1]!='@'&&maze[r][c-1]!='#'){
           maze[r][c]='@';
-          if(solve(r,c-1,i+1)!=-1){
-            return i+1;
+          int s=solve(r,c-1,i+1);
+          if(s!=-1){
+            return s+1;
           }
         }
-
-
+        maze[r][c]='.';
         //automatic animation! You are welcome.
         if(animate){
             clearTerminal();
             System.out.println(this);
-            wait(20);
+            wait(200);
         }
 
         //COMPLETE SOLVE
