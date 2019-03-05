@@ -76,7 +76,35 @@ public class Maze{
         All visited spots that were not part of the solution are changed to '.'
         All visited spots that are part of the solution are changed to '@'
     */
-    private int solve(int row, int col){ //you can add more parameters since this is private
+    private int solve(int r, int c, int i){ //you can add more parameters since this is private
+        if(maze[r][c]=='E'){
+          return 0;
+        }
+        if(maze[r+1][c]!='.'&&maze[r+1][c]!='@'&&maze[r+1][c]!='#'){
+          maze[r][c]='@';
+          if(solve(r+1,c,i+1)!=-1){
+            return i+1;
+          }
+        }
+        if(maze[r][c+1]!='.'&&maze[r][c+1]!='@'&&maze[r][c+1]!='#'){
+          maze[r][c]='@';
+          if(solve(r,c+1,i+1)!=-1){
+            return i+1;
+          }
+        }
+        if(maze[r-1][c]!='.'&&maze[r-1][c]!='@'&&maze[r-1][c]!='#'){
+          maze[r][c]='@';
+          if(solve(r-1,c,i+1)!=-1){
+            return i+1;
+          }
+        }
+        if(maze[r][c-1]!='.'&&maze[r][c-1]!='@'&&maze[r][c-1]!='#'){
+          maze[r][c]='@';
+          if(solve(r,c-1,i+1)!=-1){
+            return i+1;
+          }
+        }
+
 
         //automatic animation! You are welcome.
         if(animate){
